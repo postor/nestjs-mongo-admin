@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { FilterQuery, Model, Types } from 'mongoose';
 import { User } from '../schemas/user.schema';
 import { CreateUserDto } from 'src/dtos/CreateUserDto';
 
@@ -13,8 +13,13 @@ export class UsersService {
     return createdUser.save();
   }
 
-  async findAll(): Promise<User[]> {
-    return this.userModel.find().exec();
+  async findAll(page: number, perPage: number): Promise<User[]> {
+    const skip = (page - 1) * perPage;
+    return this.userModel.find().skip(skip).limit(perPage).exec();
+  }
+
+  async count(): Promise<number> {
+    return this.userModel.countDocuments().exec();
   }
 
   async findOne(id: string): Promise<User> {
@@ -31,5 +36,14 @@ export class UsersService {
 
   async remove(id: string): Promise<User> {
     return this.userModel.findByIdAndDelete(new Types.ObjectId(id)).exec();
+  }
+
+  async findByIds(ids: number[]): Promise<User[]> {
+    const objectIds = ids.map(id => new Types.ObjectId(id));
+
+    // Efficient MongoDB Query
+    const filterQuery: FilterQuery<User> = { _id: { $in: objectIds } };
+
+    return this.userModel.find(filterQuery).exec();
   }
 }

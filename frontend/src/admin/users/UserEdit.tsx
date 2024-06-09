@@ -7,7 +7,7 @@ import {
 
 function UserEdit() {
   return (
-    <Edit>
+    <Edit mutationMode='pessimistic'>
       <SimpleForm>
         <TextInput source="name" validate={[required()]} fullWidth />
         <TextInput source="email" fullWidth disabled />

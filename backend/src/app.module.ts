@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { PostsModule } from './posts/posts.module';
 
 const { MONGO_URI = 'mongodb://localhost/nest' } = process.env
 
@@ -13,7 +14,7 @@ const { MONGO_URI = 'mongodb://localhost/nest' } = process.env
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),
-    MongooseModule.forRoot(MONGO_URI), UsersModule],
+    MongooseModule.forRoot(MONGO_URI), UsersModule, PostsModule],
   controllers: [AppController],
   providers: [AppService],
 })

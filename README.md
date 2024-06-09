@@ -6,7 +6,3 @@ nestjs + mongodb + react-admin
 ## basic features
 - CURD actions
 - one command up with docker compose
-
-## known issues
-- no paging logic now
-- empty email in list view after modifying
