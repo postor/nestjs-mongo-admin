@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import ViteReactAutoRoutePlugin from './src/vite-plugin/ViteReactAutoRoutePlugin'
+import ViteReactAutoRoutePlugin from 'vite-react-auto-route-plugin'
 
 // https://vitejs.dev/config/
 export default defineConfig({

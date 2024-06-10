@@ -37,6 +37,7 @@
     "prettier": "^2.8.8",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.1.6",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "vite-react-auto-route-plugin": "^1.0.1"
   }
 }
